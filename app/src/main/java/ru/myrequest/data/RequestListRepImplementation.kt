@@ -3,8 +3,9 @@ package ru.myrequest.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.myrequest.domain.RequestItem
+import ru.myrequest.domain.RequestListRepository
 
-object RequestListRepImplementation {
+object RequestListRepImplementation: RequestListRepository {
 
     private var requestListLD = MutableLiveData<List<RequestItem>>()
     private val requestList = mutableListOf<RequestItem>()
@@ -27,7 +28,7 @@ object RequestListRepImplementation {
         }
     }
 
-    private fun addRequestItem(requestItem: RequestItem) {
+    override fun addRequestItem(requestItem: RequestItem) {
         if(requestItem.id == RequestItem.DEFAULT_ID){
             requestItem.id = autoIncrementId++
         }
@@ -35,26 +36,27 @@ object RequestListRepImplementation {
         updateLD()
     }
 
-    private fun deleteRequestItem(requestItem: RequestItem){
+    override fun deleteRequestItem(requestItem: RequestItem) {
         requestList.remove(requestItem)
         updateLD()
     }
 
-    private fun editRequestItem(requestItem: RequestItem){
+    override fun editRequestItem(requestItem: RequestItem) {
         val old_item = getRequestItem(requestItem.id)
         requestList.remove(old_item)
         addRequestItem(requestItem)
     }
 
-    private fun getRequestItem(requestItemId: Int): RequestItem{
+    override fun getRequestItem(requestItemId: Int): RequestItem {
         return requestList.find {
             it.id == requestItemId
         } ?: throw RuntimeException("Element with id $requestItemId not found")
     }
 
-    private fun getRequestList(): LiveData<List<RequestItem>>{
+    override fun getRequestList(): LiveData<List<RequestItem>> {
         return requestListLD
     }
+
 
     private fun updateLD(){
         requestListLD.value = requestList
