@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/ASProjects/MyRequest/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/ASProjects/MyRequest/app/src/main/res/layout/item_request.xml" value="0.5" />
+        <entry key="..\:/ASProjects/MyRequest/app/src/main/res/layout/item_request_disabled.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

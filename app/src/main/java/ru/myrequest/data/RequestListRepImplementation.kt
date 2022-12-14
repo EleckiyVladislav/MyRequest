@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.myrequest.domain.RequestItem
 import ru.myrequest.domain.RequestListRepository
+import kotlin.random.Random
 
 object RequestListRepImplementation: RequestListRepository {
 
@@ -22,7 +23,9 @@ object RequestListRepImplementation: RequestListRepository {
                 "8-999-999-99-99",
                 "Не включается",
                 "Диагностика",
-                "01.01.2020"
+                "Samsung",
+                "01.01.2020",
+                Random.nextBoolean()
             )
             addRequestItem(requestItem)
         }
